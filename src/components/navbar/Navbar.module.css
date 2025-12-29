@@ -1,6 +1,70 @@
+.nav {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  height: 15vh;
+  padding: 20px;
+  background: #0025ab;
+}
+.navbar {
+  background-color: white;
+  width: 90%;
+  height: 100%;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+}
 .navList {
   display: flex;
-  gap: 20px;
-  padding: 16px;
-  background: #000000;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  transition: transform 0.3s ease;
+}
+.navList:hover {
+  transform: scale(1.05);
+}
+.link {
+  color: black;
+  font-size: 1.5vw;
+  font-weight: 500;
+}
+.navList div {
+  display: flex;
+  align-items: center;
+}
+.navList:first-child::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  background-image: url("https://www.svgrepo.com/show/433696/product-o.svg");
+  background-size: cover;
+}
+.navList:nth-of-type(2)::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 28px;
+  margin-right: 8px;
+  background-image: url("https://www.svgrepo.com/show/522440/profile.svg");
+  background-size: cover;
+}
+.navList:last-child::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  background: url("https://www.svgrepo.com/show/529455/cart-large-minimalistic.svg");
+  background-size: contain;
+}
+.activeLink {
+  color: #0025ab;
+  font-size: 1.5vw;
+  font-weight: 600;
+  border-bottom: 2px solid #0025ab;
 }
