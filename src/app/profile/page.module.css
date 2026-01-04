@@ -1,0 +1,51 @@
+.wrapper {
+  margin-top: 15vh;
+  margin-bottom: 5vh;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card {
+  width: 360px;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.avatar {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  font-size: 28px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.name {
+  margin: 10px;
+  font-size: 22px;
+}
+.username {
+  color: #777;
+  margin-bottom: 10px;
+}
+.status {
+  margin-top: 5px;
+  font-size: 13px;
+  color: green;
+}
+.info {
+  text-align: left;
+}
+.info p {
+  margin: 8px 0;
+  font-size: 14px;
+}
+.info span {
+  font-weight: 600;
+}

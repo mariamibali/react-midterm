@@ -1,0 +1,27 @@
+.addToCart {
+  padding: 8px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.addToCart:hover {
+  transform: scale(1.05);
+  background-color: #575757;
+  color: #ffffff;
+}
+.addToCart::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-image: url("https://www.svgrepo.com/show/468198/cart-add.svg");
+  background-size: cover;
+  margin-left: 5px;
+  align-items: center;
+}
