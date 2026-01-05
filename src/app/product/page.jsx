@@ -14,8 +14,8 @@ const Home = () => {
       .then((data) => setProducts(data));
   }, []);
 
-  if (products === null) {
-    return <div>products are fetching</div>;
+  if (products.length === 0) {
+    return <div className={styles.loading}>products are fetching...</div>;
   }
   const handleAddToCart = (item) => {
     console.log("item added");
@@ -25,18 +25,19 @@ const Home = () => {
     <div className={styles.productContainer}>
       {products?.map((item) => (
         <div className={styles.itemWrapper} key={item.id}>
-          <Image
-            src={item.image}
-            width={100}
-            height={80}
-            style={{ objectFit: "contain" }}
-            alt={item.title}
-          />
+          <Link href={`/product/details/${item.id}`}>
+            <Image
+              src={item.image}
+              width={100}
+              height={80}
+              style={{ objectFit: "contain" }}
+              alt={item.title}
+            />
+          </Link>
           <div>
             <p className={styles.ship}>Ships to Ukraine</p>
-            <h3 className={styles.title}>{item.title}</h3>
             <Link href={`/product/details/${item.id}`}>
-              <p className={styles.seeDetails}>see details</p>
+              <h3 className={styles.title}>{item.title}</h3>
             </Link>
             <div className={styles.ratingPrice}>
               <p className={styles.rate}>{item.rating.rate} reviews</p>

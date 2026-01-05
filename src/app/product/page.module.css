@@ -70,8 +70,8 @@
   display: flex;
   justify-content: center;
 }
-.seeDetails {
-  font-size: 12px;
-  color: #0025ab;
-  margin-bottom: 10px;
+.loading {
+  margin-top: 20vh;
+  text-align: center;
+  font-size: 20px;
 }
