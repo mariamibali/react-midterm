@@ -60,6 +60,10 @@
   font-size: 18px;
   font-weight: 500;
 }
+.removeBtn {
+  border: none;
+  background-color: #fff;
+}
 
 @media (max-width: 480px) {
   .cartItem {
