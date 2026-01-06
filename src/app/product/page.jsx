@@ -50,7 +50,7 @@ const Home = () => {
             </div>
             <div className={styles.buttonWrapper}>
               <Button
-                title={"Add To Cart"}
+                title={"🛒 Add To Cart"}
                 handleClick={() => handleAddToCart(item)}
               />
             </div>

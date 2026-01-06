@@ -16,12 +16,3 @@
   background-color: #575757;
   color: #ffffff;
 }
-.addToCart::after {
-  content: "";
-  width: 16px;
-  height: 16px;
-  background-image: url("https://www.svgrepo.com/show/468198/cart-add.svg");
-  background-size: cover;
-  margin-left: 5px;
-  align-items: center;
-}
