@@ -3,7 +3,11 @@ import styles from "./page.module.css";
 const Profile = async () => {
   const resp = await fetch("https://fakestoreapi.com/users/3", {
     method: "GET",
+    cache: "no-store",
   });
+  if (!resp.ok) {
+    throw new Error("Failed to fetch user");
+  }
   const user = await resp.json();
 
   return (
