@@ -35,11 +35,18 @@
 }
 .rate {
   font-size: 14px;
-  color: gray;
-  text-align: right;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 .rate::before {
-  content: "⭐ ";
+  content: "";
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background-image: url("https://cdn-icons-png.flaticon.com/128/1828/1828884.png");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .price {
   font-size: 18px;
@@ -58,6 +65,7 @@
   justify-content: space-between;
   flex-direction: row-reverse;
   align-items: center;
+  margin-top: 15px;
 }
 .oldPrice {
   text-decoration: line-through;

@@ -46,9 +46,9 @@
 }
 .priceRating {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin-top: 20px;
+  gap: 15px;
 }
 .price {
   font-size: 26px;
@@ -61,4 +61,10 @@
 .count {
   margin-left: 6px;
   color: gray;
+}
+
+@media (max-width: 768px) {
+  .detailsCard {
+    flex-wrap: wrap;
+  }
 }

@@ -38,6 +38,18 @@
   margin-top: 5px;
   font-size: 13px;
   color: green;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+.status::before {
+  content: " ";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url("https://cdn-icons-png.flaticon.com/128/12225/12225908.png");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .info {
   text-align: left;

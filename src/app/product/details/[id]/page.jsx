@@ -13,8 +13,7 @@ function ProductDetails() {
       .then((data) => setproduct(data));
   }, []);
 
-  if (product === null) return;
-  <div className={styles.loading}>Loading...</div>;
+  if (product === null) return <div className={styles.loading}>Loading...</div>;
 
   return (
     <div className={styles.detailsWrapper}>
@@ -35,7 +34,7 @@ function ProductDetails() {
           <div className={styles.priceRating}>
             <p className={styles.price}>${product.price}</p>
             <div className={styles.rating}>
-              ⭐ {product.rating.rate}
+              {product.rating.rate}
               <span className={styles.count}>
                 ({product.rating.count} reviews)
               </span>

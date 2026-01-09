@@ -21,7 +21,7 @@ const Profile = async () => {
           {user.name.firstname} {user.name.lastname}
         </h2>
         <p className={styles.username}>@{user.username}</p>
-        <p className={styles.status}>🟢 Active user</p>
+        <p className={styles.status}>Active user</p>
         <div className={styles.info}>
           <p>
             <span>Email:</span> {user.email}

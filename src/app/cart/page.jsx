@@ -64,7 +64,7 @@ const Cart = () => {
             <span className={styles.itemQuantity}>{item.quantity}</span>
             <button onClick={() => increase(item.id)}>+</button>
           </div>
-          <button className={styles.removeBtn}>{"🚫"}</button>
+          <button className={styles.removeBtn}>Delete</button>
         </div>
       ))}
     </div>
