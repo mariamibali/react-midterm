@@ -26,8 +26,8 @@ const Navbar = () => {
     <div className={styles.nav}>
       <div className={styles.navbar}>
         {NAV_LIST.map((item) => (
-          <div key={item.id} className={styles.navList}>
-            <Link href={item.url}>
+          <Link href={item.url} key={item.id} className={styles.navList}>
+            <div>
               <h2
                 className={
                   pathname === item.url ? styles.activeLink : styles.link
@@ -35,8 +35,8 @@ const Navbar = () => {
               >
                 {item.title}
               </h2>
-            </Link>
-          </div>
+            </div>
+          </Link>
         ))}
       </div>
     </div>
