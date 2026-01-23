@@ -61,3 +61,32 @@
 .info span {
   font-weight: 600;
 }
+.logout {
+  padding: 5px 7px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #ffffff;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+.logout:hover {
+  box-shadow: 0 4px 14px #00000081;
+}
+.btnWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  gap: 10px;
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 90%;
+  }
+}

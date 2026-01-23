@@ -1,14 +1,36 @@
+"use client";
 import styles from "./page.module.css";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
-const Profile = async () => {
-  const resp = await fetch("https://fakestoreapi.com/users/3", {
-    method: "GET",
-    cache: "no-store",
-  });
-  if (!resp.ok) {
-    throw new Error("Failed to fetch user");
+const Profile = () => {
+  const router = useRouter();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const resp = await fetch("https://fakestoreapi.com/users/3");
+        if (!resp.ok) {
+          throw new Error("Failed to fetch user");
+        }
+        const data = await resp.json();
+        setUser(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchUser();
+  }, []);
+
+  if (!user) {
+    return <p>Loading...</p>;
   }
-  const user = await resp.json();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    router.push("/login");
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -35,6 +57,11 @@ const Profile = async () => {
           <p>
             <span>Street:</span> {user.address.street}
           </p>
+        </div>
+        <div className={styles.btnWrapper}>
+          <button onClick={handleLogout} className={styles.logout}>
+            Logout
+          </button>
         </div>
       </div>
     </div>
