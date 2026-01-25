@@ -17,6 +17,10 @@
   gap: 20px;
   align-items: center;
   padding: 20px;
+  transition: box-shadow 0.3s ease;
+}
+.itemWrapper:hover {
+  box-shadow: 0 4px 15px #00000048;
 }
 .ship {
   font-size: 12px;
@@ -38,6 +42,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
+  margin-top: 10px;
 }
 .rate::before {
   content: "";
@@ -49,27 +54,20 @@
   background-repeat: no-repeat;
 }
 .price {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 600;
-  color: #196c00;
+  color: #00146c;
 }
 .priceContainer {
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  align-items: flex-start;
-  padding: 0 5px;
-}
-.ratingPrice {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row-reverse;
   align-items: center;
-  margin-top: 15px;
+  padding: 0 5px;
+  margin-top: 10px;
 }
 .oldPrice {
   text-decoration: line-through;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
   color: rgb(210, 0, 0);
 }

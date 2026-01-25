@@ -1,58 +1,41 @@
 "use client";
+import { useAppDispatch, useAppSelector } from "@/lib/hook";
 import styles from "./page.module.css";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import Link from "next/link";
+import {
+  addToCart,
+  decreaseQuantity,
+  deleteFromCart,
+} from "@/lib/slices/cartSlice";
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState([]);
+  const cartProducts = useAppSelector((state) => state.cart.cartProducts);
+  const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    const cartFetch = async () => {
-      const res = await fetch(`https://fakestoreapi.com/carts/2`);
-      const data = await res.json();
-
-      const productDetails = await Promise.all(
-        data.products.map(async (item) => {
-          const prodRes = await fetch(
-            `https://fakestoreapi.com/products/${item.productId}`
-          );
-          const prodData = await prodRes.json();
-          return { ...prodData, quantity: item.quantity };
-        })
-      );
-      setCartItems(productDetails);
-    };
-    cartFetch();
-  }, []);
-
-  const increase = (id) => {
-    setCartItems((items) =>
-      items.map((product) =>
-        product.id === id && product.quantity < 10
-          ? { ...product, quantity: product.quantity + 1 }
-          : product
-      )
-    );
+  const increase = (item) => {
+    dispatch(addToCart(item));
   };
-
-  const decrease = (id) => {
-    setCartItems((items) =>
-      items.map((product) =>
-        product.id === id && product.quantity > 1
-          ? { ...product, quantity: product.quantity - 1 }
-          : product
-      )
-    );
+  const decrease = (item) => {
+    dispatch(decreaseQuantity(item));
   };
 
   return (
     <div className={styles.cartWrapper}>
       <h1 className={styles.cartTitle}>Shopping Cart</h1>
-      {cartItems.map((item) => (
+      {cartProducts.map((item) => (
         <div className={styles.cartItem} key={item.id}>
           <div className={styles.itemDetails}>
             <div className={styles.imageWrapper}>
-              <Image src={item.image} width={80} height={80} alt={item.title} />
+              <Link href={`/product/details/${item.id}`}>
+                <Image
+                  src={item.image}
+                  width={80}
+                  height={80}
+                  alt={item.title}
+                  style={{ cursor: "pointer" }}
+                />
+              </Link>
               <h3 className={styles.title}>{item.title}</h3>
             </div>
             <p className={styles.price}>
@@ -60,11 +43,16 @@ const Cart = () => {
             </p>
           </div>
           <div className={styles.quantity}>
-            <button onClick={() => decrease(item.id)}>-</button>
+            <button onClick={() => decrease(item)}>-</button>
             <span className={styles.itemQuantity}>{item.quantity}</span>
-            <button onClick={() => increase(item.id)}>+</button>
+            <button onClick={() => increase(item)}>+</button>
           </div>
-          <button className={styles.removeBtn}>Delete</button>
+          <button
+            className={styles.removeBtn}
+            onClick={() => dispatch(deleteFromCart(item))}
+          >
+            Delete
+          </button>
         </div>
       ))}
     </div>

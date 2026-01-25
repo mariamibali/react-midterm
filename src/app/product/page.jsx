@@ -4,9 +4,12 @@ import styles from "./page.module.css";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Button from "@/components/button/Button";
+import { addToCart } from "@/lib/slices/cartSlice";
+import { useAppDispatch } from "@/lib/hook";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -18,7 +21,7 @@ const Home = () => {
     return <div className={styles.loading}>products are fetching...</div>;
   }
   const handleAddToCart = (item) => {
-    console.log("item added");
+    dispatch(addToCart(item));
   };
 
   return (
@@ -39,14 +42,12 @@ const Home = () => {
             <Link href={`/product/details/${item.id}`}>
               <h3 className={styles.title}>{item.title}</h3>
             </Link>
-            <div className={styles.ratingPrice}>
-              <p className={styles.rate}>{item.rating.rate} reviews</p>
-              <div className={styles.priceContainer}>
-                <p className={styles.price}>${item.price}</p>
-                <p className={styles.oldPrice}>
-                  ${(item.price * 1.2).toFixed(2)}
-                </p>
-              </div>
+            <p className={styles.rate}>{item.rating.rate} reviews</p>
+            <div className={styles.priceContainer}>
+              <p className={styles.price}>${item.price}</p>
+              <p className={styles.oldPrice}>
+                ${(item.price * 1.2).toFixed(2)}
+              </p>
             </div>
             <div className={styles.buttonWrapper}>
               <Button

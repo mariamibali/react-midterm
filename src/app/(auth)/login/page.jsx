@@ -7,6 +7,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Link from "next/link";
 import styles from "./page.module.css";
+import { updateUser } from "@/lib/slices/userSlice";
+import { useAppDispatch } from "@/lib/hook";
 
 const schema = yup.object({
   username: yup
@@ -26,6 +28,7 @@ const schema = yup.object({
 export default function LoginPage() {
   const router = useRouter();
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const dispatch = useAppDispatch();
 
   const {
     register,
@@ -52,11 +55,15 @@ export default function LoginPage() {
       });
 
       if (!res.ok) throw new Error();
+
       const result = await res.json();
+
+      const userdata = await fetch("https://fakestoreapi.com/users/1");
+      const parsedUserdata = await userdata.json();
+      dispatch(updateUser(parsedUserdata));
       if (data.remember) {
         localStorage.setItem("token", result.token);
       }
-
       router.push("/product");
     } catch {
       alert("არასწორი username ან password");

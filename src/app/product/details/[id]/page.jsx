@@ -3,15 +3,26 @@ import styles from "./page.module.css";
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Button from "@/components/button/Button";
+import { useAppDispatch, useAppSelector } from "@/lib/hook";
+import Link from "next/link";
+import { addToCart } from "@/lib/slices/cartSlice";
 
 function ProductDetails() {
   const { id } = useParams();
   const [product, setproduct] = useState(null);
+  const user = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products/${id}`)
       .then((res) => res.json())
       .then((data) => setproduct(data));
   }, []);
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
+  };
 
   if (product === null) return <div className={styles.loading}>Loading...</div>;
 
@@ -40,6 +51,16 @@ function ProductDetails() {
               </span>
             </div>
           </div>
+          {user.subscribed ? (
+            <Button
+              title={"Add To Cart"}
+              handleClick={() => handleAddToCart()}
+            />
+          ) : (
+            <Link href={"/login"}>
+              <Button title={"Log In"} />
+            </Link>
+          )}
         </div>
       </div>
     </div>

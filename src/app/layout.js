@@ -2,6 +2,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
+import StoreProvider from "./StoreProvider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -18,9 +19,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`layout ${poppins.variable}`}>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <StoreProvider>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </StoreProvider>
       </body>
     </html>
   );
