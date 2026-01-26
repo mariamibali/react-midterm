@@ -2,6 +2,8 @@
 import { usePathname } from "next/navigation";
 import styles from "./Navbar.module.css";
 import Link from "next/link";
+import { useAppSelector } from "@/lib/hook";
+import { selectTotalQuantity } from "@/lib/slices/cartSlice";
 
 const NAV_LIST = [
   {
@@ -22,12 +24,14 @@ const NAV_LIST = [
 ];
 const Navbar = () => {
   const pathname = usePathname();
+  const totalQuantity = useAppSelector(selectTotalQuantity);
+
   return (
     <div className={styles.nav}>
       <div className={styles.navbar}>
         {NAV_LIST.map((item) => (
           <Link href={item.url} key={item.id} className={styles.navList}>
-            <div>
+            <div className={styles.linkWrapper}>
               <h2
                 className={
                   pathname === item.url ? styles.activeLink : styles.link
@@ -35,6 +39,9 @@ const Navbar = () => {
               >
                 {item.title}
               </h2>
+              {item.url === "/cart" && totalQuantity > 0 && (
+                <span className={styles.badge}>{totalQuantity}</span>
+              )}
             </div>
           </Link>
         ))}

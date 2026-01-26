@@ -7,11 +7,15 @@ import {
   addToCart,
   decreaseQuantity,
   deleteFromCart,
+  selectTotalPrice,
+  selectTotalQuantity,
 } from "@/lib/slices/cartSlice";
 
 const Cart = () => {
   const cartProducts = useAppSelector((state) => state.cart.cartProducts);
   const dispatch = useAppDispatch();
+  const totalQuantity = useAppSelector(selectTotalQuantity);
+  const totalPrice = useAppSelector(selectTotalPrice);
 
   const increase = (item) => {
     dispatch(addToCart(item));
@@ -50,11 +54,22 @@ const Cart = () => {
           <button
             className={styles.removeBtn}
             onClick={() => dispatch(deleteFromCart(item))}
-          >
-            Delete
-          </button>
+          ></button>
         </div>
       ))}
+      <div className={styles.totalPriceContainer}>
+        <h2 className={styles.totalTitle}>Total Price and Quantity</h2>
+        <div className={styles.priceAndQuantity}>
+          <div className={styles.wrapper}>
+            <p className={styles.totalQuantity}>Total quantity:</p>
+            <p className={styles.totalQuantity}>{totalQuantity}</p>
+          </div>
+          <div className={styles.wrapper}>
+            <p className={styles.totalPrice}>Total price: </p>
+            <p className={styles.totalPrice}>${totalPrice}</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

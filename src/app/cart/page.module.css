@@ -62,12 +62,20 @@
 }
 .removeBtn {
   border: none;
-  background-color: #fff;
+  border-radius: 15px;
+  padding: 8px 10px;
+  background-color: #fec5c5;
   color: red;
+  font-size: 14px;
+  font-weight: 600;
   display: flex;
   align-items: center;
   gap: 5px;
   cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.removeBtn:hover {
+  transform: scale(1.05);
 }
 .removeBtn::before {
   content: "";
@@ -77,6 +85,43 @@
   background-image: url("https://cdn-icons-png.flaticon.com/128/6861/6861362.png");
   background-size: cover;
   background-repeat: no-repeat;
+}
+.totalPriceContainer {
+  margin-top: 40px;
+  padding: 24px 28px;
+  background: linear-gradient(135deg, #cfd7f4, #4675f8);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.totalTitle {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+  text-align: center;
+}
+.priceAndQuantity {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 12px;
+}
+
+.totalQuantity,
+.totalPrice {
+  font-size: 17px;
+  font-weight: 600;
+  color: #020b20;
+  padding: 10px;
+}
+.wrapper {
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #063eae;
+  box-shadow: 0px 4px 10px #020b20;
 }
 
 @media (max-width: 480px) {
