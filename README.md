@@ -44,10 +44,12 @@ Access to the cart page is restricted to authenticated users only.
 - Profile page with user information
 - Deployed on **Vercel**
 
-Live URL:
+## Live Demo
+
 https://react-final-mocha-psi.vercel.app/
 
-GitHub Repository:
+## GitHub Repository
+
 https://github.com/mariamibali/react-midterm
 
 ---
@@ -66,29 +68,31 @@ https://github.com/mariamibali/react-midterm
 
 ## Project Structure
 
+````txt
 src/
 ├── app/
-│ ├── (auth)/
-│ │ ├── login/
-│ │ └── register/
-│ ├── cart/
-│ ├── product/
-│ │ └── details/[id]/
-│ ├── profile/
-│ ├── layout.js
-│ ├── page.js
-│ └── globals.css
+│   ├── (auth)/
+│   │   ├── login/
+│   │   └── register/
+│   ├── cart/
+│   ├── product/
+│   │   └── details/[id]/
+│   ├── profile/
+│   ├── layout.js
+│   ├── page.js
+│   └── globals.css
 │
 ├── components/
-│ ├── button/
-│ ├── navbar/
-│ └── footer/
+│   ├── button/
+│   ├── navbar/
+│   └── footer/
 │
 ├── lib/
-│ ├── slices/
-│ │ └── cartSlice.js
-│ ├── hook.js
-│ └── store.js
+│   ├── slices/
+│   │   ├── cartSlice.js
+│   │   └── userSlice.js
+│   ├── hook.js
+│   └── store.js
 
 ## ⚙️ Installation & Run
 
@@ -97,4 +101,4 @@ Clone the repository and run the project locally:
 ```bash
 npm install
 npm run dev
-```
+````
