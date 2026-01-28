@@ -28,7 +28,7 @@ const Home = () => {
     <div className={styles.productContainer}>
       {products?.map((item) => (
         <div className={styles.itemWrapper} key={item.id}>
-          <Link href={`/product/details/${item.id}`}>
+          <Link className={styles.img} href={`/product/details/${item.id}`}>
             <Image
               src={item.image}
               width={100}

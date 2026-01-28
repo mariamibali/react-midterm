@@ -13,12 +13,11 @@
 .footer p {
   font-size: 1.2vw;
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.893);
+  color: white;
   padding: 10px;
   border-radius: 14px;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.3s ease;
 }
 .footerLink:hover {
   transform: scale(1.05);
-  background-color: white;
 }
