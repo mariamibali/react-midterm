@@ -5,9 +5,12 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Button from "@/components/button/Button";
 import { addToCart } from "@/lib/slices/cartSlice";
-import { useAppDispatch } from "@/lib/hook";
+import { useAppDispatch, useAppSelector } from "@/lib/hook";
+import { useRouter } from "next/navigation";
 
 const Home = () => {
+  const router = useRouter();
+  const { isLoggedIn } = useAppSelector((state) => state.user);
   const [products, setProducts] = useState([]);
   const dispatch = useAppDispatch();
 
@@ -16,6 +19,14 @@ const Home = () => {
       .then((response) => response.json())
       .then((data) => setProducts(data));
   }, []);
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      router.push("/login");
+    }
+  }, [isLoggedIn, router]);
+
+  if (!isLoggedIn) return null;
 
   if (products.length === 0) {
     return <div className={styles.loading}>products are fetching...</div>;

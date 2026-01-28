@@ -37,12 +37,6 @@ export default function LoginPage() {
     resolver: yupResolver(schema),
   });
 
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      router.push("/product");
-    }
-  }, [router]);
-
   const onSubmit = async (data) => {
     try {
       const res = await fetch("https://fakestoreapi.com/auth/login", {

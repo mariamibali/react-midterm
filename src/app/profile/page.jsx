@@ -1,22 +1,27 @@
 "use client";
 import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
-import { useAppSelector } from "@/lib/hook";
+import { useAppSelector, useAppDispatch } from "@/lib/hook";
+import { useEffect } from "react";
+import { logout } from "@/lib/slices/userSlice";
 
 const Profile = () => {
   const router = useRouter();
   const { user, isLoggedIn } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (!isLoggedIn || !user) {
+      router.push("/login");
+    }
+  }, [isLoggedIn, user, router]);
 
   if (!user) {
     return <p>Loading...</p>;
   }
 
-  if (!isLoggedIn || !user) {
-    router.push("/login");
-    return null;
-  }
-
   const handleLogout = () => {
+    dispatch(logout());
     localStorage.removeItem("token");
     router.push("/login");
   };

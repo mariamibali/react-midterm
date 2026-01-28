@@ -1,4 +1,5 @@
 "use client";
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/lib/hook";
 import styles from "./page.module.css";
 import Image from "next/image";
@@ -10,12 +11,23 @@ import {
   selectTotalPrice,
   selectTotalQuantity,
 } from "@/lib/slices/cartSlice";
+import { useRouter } from "next/navigation";
 
 const Cart = () => {
   const cartProducts = useAppSelector((state) => state.cart.cartProducts);
   const dispatch = useAppDispatch();
   const totalQuantity = useAppSelector(selectTotalQuantity);
   const totalPrice = useAppSelector(selectTotalPrice);
+  const router = useRouter();
+  const { isLoggedIn } = useAppSelector((state) => state.user);
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      router.push("/login");
+    }
+  }, [isLoggedIn, router]);
+
+  if (!isLoggedIn) return null;
 
   const increase = (item) => {
     dispatch(addToCart(item));
