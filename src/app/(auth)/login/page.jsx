@@ -20,7 +20,6 @@ const schema = yup.object({
     .string()
     .required("პაროლი სავალდებულოა")
     .min(6, "პაროლი უნდა შეიცავდეს მინიმუმ 6 სიმბოლოს")
-    .matches(/[A-Z]/, "პაროლი უნდა შეიცავდეს მინიმუმ ერთ დიდ ასოს")
     .matches(/[0-9]/, "პაროლი უნდა შეიცავდეს მინიმუმ ერთ ციფრს"),
   remember: yup.boolean(),
 });
@@ -39,8 +38,9 @@ export default function LoginPage() {
   });
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) router.push("/product");
+    if (localStorage.getItem("token")) {
+      router.push("/product");
+    }
   }, [router]);
 
   const onSubmit = async (data) => {
@@ -54,13 +54,23 @@ export default function LoginPage() {
         }),
       });
 
-      if (!res.ok) throw new Error();
+      if (!res.ok) {
+        throw new Error("Login failed");
+      }
 
       const result = await res.json();
 
-      const userdata = await fetch("https://fakestoreapi.com/users/1");
-      const parsedUserdata = await userdata.json();
-      dispatch(updateUser(parsedUserdata));
+      const userdata = await fetch("https://fakestoreapi.com/users");
+      const users = await userdata.json();
+
+      const currentUser = users.find((user) => user.username === data.username);
+
+      if (!currentUser) {
+        throw new Error("User not found");
+      }
+
+      dispatch(updateUser(currentUser));
+
       if (data.remember) {
         localStorage.setItem("token", result.token);
       }

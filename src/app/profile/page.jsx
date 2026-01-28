@@ -1,30 +1,19 @@
 "use client";
 import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useAppSelector } from "@/lib/hook";
 
 const Profile = () => {
   const router = useRouter();
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const resp = await fetch("https://fakestoreapi.com/users/3");
-        if (!resp.ok) {
-          throw new Error("Failed to fetch user");
-        }
-        const data = await resp.json();
-        setUser(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchUser();
-  }, []);
+  const { user, isLoggedIn } = useAppSelector((state) => state.user);
 
   if (!user) {
     return <p>Loading...</p>;
+  }
+
+  if (!isLoggedIn || !user) {
+    router.push("/login");
+    return null;
   }
 
   const handleLogout = () => {

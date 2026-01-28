@@ -51,7 +51,7 @@ function ProductDetails() {
               </span>
             </div>
           </div>
-          {user.subscribed ? (
+          {user.isLoggedIn ? (
             <Button
               title={"Add To Cart"}
               handleClick={() => handleAddToCart()}
